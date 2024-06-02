@@ -1,0 +1,13 @@
+version: "3"
+services:
+  db:
+    image: postgres # use image from docker hub
+    environment: 
+      # this postgres info must be the same indicated in db.js
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: user123
+      POSTGRES_DB: db123
+  app:
+    image: my-node-app
+    ports: 
+      - 3030:3030

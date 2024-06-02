@@ -1,7 +1,9 @@
 ###
-GET http://localhost:1337
+GET http://localhost:3030/setup
 ###
-POST http://localhost:1337
+GET http://localhost:3030
+###
+POST http://localhost:3030
 Content-Type: application/json
 
 {

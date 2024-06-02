@@ -1,6 +1,6 @@
 const express = require('express');
 const pool = require('./db');
-const port = 1337;
+const port = 3030;
 
 const app = express(); // initialize server app with express
 app.use(express.json()); // allow server to receive json data
