@@ -13,8 +13,8 @@ Here are all the steps to create all the Back-end structure with Docker, Node.js
 - fill the db.js file with pool setup
 - fill the server.js file with base setup
 - simulate a rest call, create test.rest file and install rest client vscode plugin (or use postman)
-- create the Dockerfile for node backend and build the image
-   docker build -t my-node-app .
+- create the backend.dockerfile for node backend
 - create docker-compose.yaml and fill it with services
 - launch docker compose 
+   docker-compose build
    docker-compose up -d

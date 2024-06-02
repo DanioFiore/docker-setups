@@ -1,13 +1,3 @@
 ###
-GET http://localhost:3030/setup
-###
-GET http://localhost:3030
-###
-POST http://localhost:3030
-Content-Type: application/json
-
-{
-   "name": "Danio",
-   "location": "Hello world street 23"
-}
+GET http://localhost:3030/
 ###

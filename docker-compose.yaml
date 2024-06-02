@@ -1,13 +1,28 @@
 version: "3"
 services:
   db:
+    container_name: db
     image: postgres # use image from docker hub
+    restart: always # if error, restart it
     environment: 
       # this postgres info must be the same indicated in db.js
-      POSTGRES_PASSWORD: password123
-      POSTGRES_USER: user123
-      POSTGRES_DB: db123
-  app:
-    image: my-node-app
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - 5432:5432 # default postgres port
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  backend:
+    container_name: node-backend
+    image: node-backend
     ports: 
       - 3030:3030
+    build:
+      context: ./backend # where the dockerfile is
+      dockerfile: backend.dockerfile # dockerfile name
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres?schema=public # important @db to tell docker to use our db container, 5432 is the postgres port
+
+volumes:
+  pgdata: {}
