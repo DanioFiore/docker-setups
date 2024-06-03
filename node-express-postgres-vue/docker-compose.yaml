@@ -13,6 +13,15 @@ services:
       - 5432:5432 # default postgres port
     volumes:
       - pgdata:/var/lib/postgresql/data
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@user.com
+      PGADMIN_DEFAULT_PASSWORD: local
+    ports:
+      - 3031:80 # to visit pgadmin go to localhost:3031. Binding on port 80 is mandatory
   backend:
     container_name: node-backend
     image: node-backend
@@ -22,7 +31,7 @@ services:
       context: ./backend # where the dockerfile is
       dockerfile: backend.dockerfile # dockerfile name
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres?schema=public # important @db to tell docker to use our db container, 5432 is the postgres port
+      - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres?schema=public # important @db to tell docker to use our db container, 5432 is the postgres port
 
 volumes:
   pgdata: {}
