@@ -15,6 +15,7 @@ Here are all the steps to create all the Back-end structure with Docker, Node.js
 - simulate a rest call, create test.rest file and install rest client vscode plugin (or use postman)
 - create the backend.dockerfile for node backend
 - create docker-compose.yaml and fill it with services
+   postgres - pgadmin - node
 - launch docker compose 
    docker-compose build
    docker-compose up -d
