@@ -1,21 +1,19 @@
 Here are all the steps to create all the Back-end structure with Docker, Node.js, Express.js, Postgres and Vue.js
 
-- launch 
+- run 
    npm init -y
-- launch
+- run
    npm install express pg 
       pg = postgres
 - in package.json -> scripts, add
    "dev": "node server.js"
 - create .gitignore and fill it with node_modules and package-lock.json
 - create server.js file
-- create db.js file
-- fill the db.js file with pool setup
 - fill the server.js file with base setup
 - simulate a rest call, create test.rest file and install rest client vscode plugin (or use postman)
 - create the backend.dockerfile for node backend
 - create docker-compose.yaml and fill it with services
    postgres - pgadmin - node
-- launch docker compose 
+- run docker compose 
    docker-compose build
    docker-compose up -d
