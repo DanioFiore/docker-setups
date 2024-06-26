@@ -1,0 +1,11 @@
+- run npm init and create package.json
+- run npm install
+    - body-parser
+    - express
+    - mongodb
+    - mongoose
+- create server folder
+    - create app.js file, our app entrypoint
+    - create db.js file, our db configuration
+    - create Models folder
+        - create Product.js file, our mongoose Schema example
