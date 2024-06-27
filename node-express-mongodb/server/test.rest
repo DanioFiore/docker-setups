@@ -1,0 +1,24 @@
+@contentType = application/json
+# @httpVersion = HTTP/1.1
+
+###
+GET http://localhost:3100/products
+Content-Type: {{contentType}}
+###
+###
+POST http://localhost:3100/products
+Content-Type: {{contentType}}
+
+{"name":"iPhone","price":"1230","quantity":"23"}
+
+###
+###
+PUT http://localhost:3100/products/667d1018d7782f5982305070
+Content-Type: {{contentType}}
+
+{"name":"Samsung","price":"1230","quantity":"23"}
+###
+###
+DELETE http://localhost:3100/products/667d1018d7782f5982305070
+Content-Type: {{contentType}}
+###
