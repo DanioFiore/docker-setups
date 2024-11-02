@@ -1,0 +1,51 @@
+version: "3.4"
+
+services:
+  server:
+    build:
+      # where the dockerfile is
+      context: .
+      target: development
+    volumes:
+      # this is a trick that prevent the node_modules to be overwritten in our volumes, because remember that we have included node_modules in our dockerignore, but here in the volumes we have said that we have to copy all.
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      # on the left, we set the port that we are listen in our local machine, so the port we will write in the url (localhost:port). On the right side, we set the port that our container are listening, so the same port we set in our index.ts file to listen. Like this, when we visit localhost:port in our local machine, all will be redirected to the port on the right that is our container
+      - 4000:4000
+    # in development stage we don't want to run npm run build like we specify in dockerfile (there we use npm run build because after we have to copy the dist folder into the production stage). So here we override that command with npm run dev
+    command: npm run dev
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db_name
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/postgres?schema=public # important @db to tell docker to use our db container, 5432 is the postgres port
+    depends_on:
+      - db
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db_name
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 8080:80
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
+
+
+# to run the docker compose, we have to specify the file name because we had changed its base file name, so for example for development stage, run: docker compose -f docker-compose.dev.yaml up --build -d (-d is for detatched mode, you can omitt it)

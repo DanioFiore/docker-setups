@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      # the name of our stage in dockerfile 
+      target: production
+    
+    ports:
+      - 4000:4000

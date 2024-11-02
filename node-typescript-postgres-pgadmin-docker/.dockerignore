@@ -1,0 +1,3 @@
+# in dockerignore we specify folder and files that don't want to be copied with the COPY command
+node_modules/
+dist/
